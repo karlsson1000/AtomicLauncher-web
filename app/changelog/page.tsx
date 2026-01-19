@@ -57,7 +57,7 @@ export default function Changelog() {
   };
 
   return (
-    <div className="min-h-screen bg-neutral-900 p-8 relative">
+    <div className="min-h-screen bg-neutral-900 p-4 sm:p-8 relative">
       {/* Background */}
       <div className="absolute inset-0 pointer-events-none select-none">
         <Image
@@ -71,36 +71,36 @@ export default function Changelog() {
       </div>
 
       {/* Logo and Title */}
-      <Link href="/" className="absolute top-4 left-4 flex items-center gap-2 z-10 hover:opacity-80 transition-opacity cursor-pointer">
-        <Image src="/logo.png" alt="Logo" width={24} height={24} priority />
-        <h1 className="text-white text-base font-semibold">Atomic Launcher</h1>
+      <Link href="/" className="absolute top-3 sm:top-4 left-3 sm:left-4 flex items-center gap-2 z-10 hover:opacity-80 transition-opacity cursor-pointer">
+        <Image src="/logo.png" alt="Logo" width={24} height={24} priority className="w-5 h-5 sm:w-6 sm:h-6" />
+        <h1 className="text-white text-sm sm:text-base font-semibold">Atomic Launcher</h1>
       </Link>
 
       {/* Content */}
-      <div className="max-w-3xl mx-auto pt-20 relative z-10">
-        <h2 className="text-white text-3xl font-bold mb-8">Changelog</h2>
+      <div className="max-w-3xl mx-auto pt-16 sm:pt-20 relative z-10 px-2">
+        <h2 className="text-white text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">Changelog</h2>
 
         {loading && (
-          <p className="text-white/60">Loading releases...</p>
+          <p className="text-white/60 text-sm sm:text-base">Loading releases...</p>
         )}
 
         {error && (
-          <p className="text-red-400">Failed to load changelog.</p>
+          <p className="text-red-400 text-sm sm:text-base">Failed to load changelog.</p>
         )}
 
         {!loading && !error && releases.length === 0 && (
-          <p className="text-white/60">No releases found.</p>
+          <p className="text-white/60 text-sm sm:text-base">No releases found.</p>
         )}
 
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           {releases.map((release, index) => (
             <div 
               key={release.tag_name} 
-              className="border-l-2 border-[#4572e3] pl-6 py-4 bg-white/5"
+              className="border-l-2 border-[#4572e3] pl-4 sm:pl-6 py-3 sm:py-4 bg-white/5"
             >
-              <div className="flex items-center justify-between mb-3 pr-4">
-                <div className="flex items-center gap-3">
-                  <h3 className="text-white text-xl font-semibold">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 gap-2 pr-2 sm:pr-4">
+                <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+                  <h3 className="text-white text-lg sm:text-xl font-semibold">
                     {release.name || release.tag_name}
                   </h3>
                   {index === 0 && (
@@ -109,12 +109,12 @@ export default function Changelog() {
                     </span>
                   )}
                 </div>
-                <span className="text-white/40 text-sm">
+                <span className="text-white/40 text-xs sm:text-sm">
                   {formatDate(release.published_at)}
                 </span>
               </div>
               
-              <div className="text-white/70 text-sm whitespace-pre-wrap pr-4">
+              <div className="text-white/70 text-xs sm:text-sm whitespace-pre-wrap pr-2 sm:pr-4">
                 {release.body || 'No release notes available.'}
               </div>
             </div>
